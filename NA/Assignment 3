@@ -1,0 +1,31 @@
+from sklearn.neural_network import MLPClassifier
+import numpy as np
+
+# Input data
+x = np.array([
+    [0,0],
+    [0,1],
+    [1,0],
+    [1,1]
+])
+
+# Target output
+y = np.array([0,1,1,0])
+
+# Feed Forward Neural Network
+model = MLPClassifier(
+    hidden_layer_sizes=(3,),
+    activation='logistic',
+    solver='lbfgs',
+    max_iter=5000,
+    random_state=1
+)
+
+# Train using Backpropagation
+model.fit(x, y)
+
+# Prediction
+pred = model.predict(x)
+
+print("Predicted Output:")
+print(pred)

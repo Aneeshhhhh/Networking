@@ -1,0 +1,33 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.array([-2, -1, 0, 1, 2])
+
+# Sigmoid
+sigmoid = 1 / (1 + np.exp(-x))
+
+# Tanh
+tanh = np.tanh(x)
+
+# ReLU
+relu = np.maximum(0, x)
+
+# Print values
+print("Input:", x)
+print("Sigmoid:", sigmoid)
+print("Tanh:", tanh)
+print("ReLU:", relu)
+
+# Plot functions
+plt.plot(x, sigmoid, label='Sigmoid')
+plt.plot(x, tanh, label='Tanh')
+plt.plot(x, relu, label='ReLU')
+
+plt.xlabel("x")
+plt.ylabel("Output")
+plt.title("Activation Functions")
+
+plt.legend()
+plt.grid()
+
+plt.show()

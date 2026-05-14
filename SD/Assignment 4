@@ -1,0 +1,36 @@
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+
+# Load dataset
+url = "https://raw.githubusercontent.com/jbrownlee/Datasets/master/abalone.csv"
+
+columns = [
+    'Sex', 'Length', 'Diameter', 'Height',
+    'Whole_weight', 'Shucked_weight',
+    'Viscera_weight', 'Shell_weight', 'Rings'
+]
+
+df = pd.read_csv(url, names=columns)
+
+# Features and target
+x = df.drop('Rings', axis=1)
+y = df['Rings']
+
+# Convert categorical column
+x = pd.get_dummies(x)
+
+# Split dataset
+x_train, x_test, y_train, y_test = train_test_split(
+    x, y, test_size=0.2, random_state=42
+)
+
+# Decision Tree model
+model = DecisionTreeClassifier()
+model.fit(x_train, y_train)
+
+# Prediction
+pred = model.predict(x_test)
+
+print("Accuracy:", accuracy_score(y_test, pred))

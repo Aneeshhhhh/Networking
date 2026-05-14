@@ -1,0 +1,27 @@
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes import MultinomialNB
+
+# Training data
+text = [
+    'good nice excellent',
+    'bad worst poor'
+]
+
+label = [
+    'positive',
+    'negative'
+]
+
+# Convert text to vectors
+cv = CountVectorizer()
+x = cv.fit_transform(text)
+
+# Train model
+model = MultinomialNB()
+model.fit(x, label)
+
+# Test document
+test = cv.transform(['good movie'])
+
+# Prediction
+print(model.predict(test))
