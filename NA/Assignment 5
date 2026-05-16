@@ -21,7 +21,6 @@ model.fit(x, y)
 
 # Plot points
 for i in range(len(x)):
-    
     if y[i] == 0:
         plt.scatter(x[i][0], x[i][1], marker='o', s=100)
     else:

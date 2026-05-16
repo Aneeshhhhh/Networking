@@ -1,33 +1,23 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-x = np.array([-2, -1, 0, 1, 2])
+x = np.linspace(-10, 10, 100)
 
-# Sigmoid
 sigmoid = 1 / (1 + np.exp(-x))
-
-# Tanh
+relu = np.maximum(0, x)
 tanh = np.tanh(x)
 
-# ReLU
-relu = np.maximum(0, x)
+leaky_relu = np.where(x > 0, x, 0.01 * x)
 
-# Print values
-print("Input:", x)
-print("Sigmoid:", sigmoid)
-print("Tanh:", tanh)
-print("ReLU:", relu)
+exp_x = np.exp(x)
+softmax = exp_x / np.sum(exp_x)
 
-# Plot functions
 plt.plot(x, sigmoid, label='Sigmoid')
-plt.plot(x, tanh, label='Tanh')
 plt.plot(x, relu, label='ReLU')
-
-plt.xlabel("x")
-plt.ylabel("Output")
-plt.title("Activation Functions")
+plt.plot(x, tanh, label='Tanh')
+plt.plot(x, leaky_relu, label='Leaky ReLU')
+plt.plot(x, softmax, label='Softmax')
 
 plt.legend()
-plt.grid()
-
+plt.grid(True)
 plt.show()
